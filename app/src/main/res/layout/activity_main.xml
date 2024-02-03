@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playerFrameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <TextView
+        android:id="@+id/txtEmptySong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:text="@string/txt_no_song"
+        android:visibility="gone"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:id="@+id/rlPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView"
+                android:layout_width="340dp"
+                android:layout_height="340dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="58dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="6dp">
+
+                <ImageView
+                    android:id="@+id/imgThumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/black"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_album"
+                    tools:ignore="ContentDescription" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/txtSongTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="15dp"
+                android:ellipsize="marquee"
+                android:freezesText="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="@tools:sample/lorem/random" />
+
+            <TextView
+                android:id="@+id/txtArtistName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="15dp"
+                android:ellipsize="marquee"
+                android:freezesText="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="16sp"
+                tools:text="@tools:sample/full_names" />
+        </LinearLayout>
+        <!-- seek bar and duration -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/playerControls"
+            android:layout_marginBottom="38dp">
+
+            <TextView
+                android:id="@+id/txtStartDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:textColor="@color/holoWhite" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/txtEndDuration"
+                android:layout_toEndOf="@+id/txtStartDuration"
+                android:progressBackgroundTint="@color/colorAccent"
+                android:progressTint="@color/colorAccent"
+                android:thumbTint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/txtEndDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="25dp"
+                android:textColor="@color/holoWhite" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/playerControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp">
+
+            <ImageView
+                android:id="@+id/btnShuffle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@+id/btnPrevious"
+                android:background="@drawable/selector_round"
+                android:padding="15dp"
+                android:src="@drawable/ic_repeat"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/btnPrevious"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/fabPlayPause"
+                android:background="@drawable/selector_round"
+                android:padding="15dp"
+                android:src="@drawable/ic_previous"
+                tools:ignore="ContentDescription" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fabPlayPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_play"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                app:elevation="0dp"
+                tools:ignore="ContentDescription">
+
+                <ImageView
+                    android:id="@+id/ivPlayPause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/ic_play"/>
+
+
+                <ProgressBar
+                    android:id="@+id/audioProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_margin="8dp"
+                    android:indeterminateTint="@color/white"
+                    android:layout_gravity="center" />
+
+
+            </androidx.cardview.widget.CardView>
+
+           <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabPlayPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_play"
+                app:backgroundTint="@color/colorAccent"
+                app:elevation="0dp"
+                tools:ignore="ContentDescription" />-->
+
+
+
+            <ImageView
+                android:id="@+id/btnNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/fabPlayPause"
+                android:background="@drawable/selector_round"
+                android:padding="15dp"
+                android:src="@drawable/ic_next"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/btnPlayList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/btnNext"
+                android:background="@drawable/selector_round"
+                android:padding="15dp"
+                android:src="@drawable/ic_play_list"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>
