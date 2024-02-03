@@ -78,6 +78,9 @@ class MainActivity :
                             binding.audioProgress.visibility = View.VISIBLE
                             delay(200)
                             MusicPlayerRemote.playerService?.initMediaPlayer("https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3")
+                            val imgByte = getSongThumbnail("https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3")
+                            Glide.with(this@MainActivity).asBitmap().load(imgByte).error(R.drawable.ic_album)
+                                .into(binding.imgThumbnail)
                         }
                     }
                 }
@@ -107,9 +110,6 @@ class MainActivity :
             playerService!!.isPlaying()
         ) {
             binding.ivPlayPause.setImageResource(R.drawable.ic_pause)
-            val imgByte = getSongThumbnail("https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3")
-            Glide.with(this@MainActivity).asBitmap().load(imgByte).error(R.drawable.ic_album)
-                .into(binding.imgThumbnail)
         } else {
             binding.ivPlayPause.setImageResource(R.drawable.ic_play)
         }
