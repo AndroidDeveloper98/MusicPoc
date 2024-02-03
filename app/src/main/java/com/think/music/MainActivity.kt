@@ -11,10 +11,12 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.think.music.databinding.ActivityMainBinding
 import com.think.music.services.PlayerService
 import com.think.music.util.MusicPlayerRemote
 import com.think.music.util.PlayPauseStateNotifier
+import com.think.music.util.PlayerHelper.getSongThumbnail
 import com.think.music.util.SeekCompletionNotifier
 import com.think.music.util.SongChangeNotifier
 import kotlinx.coroutines.CoroutineScope
@@ -105,6 +107,9 @@ class MainActivity :
             playerService!!.isPlaying()
         ) {
             binding.ivPlayPause.setImageResource(R.drawable.ic_pause)
+            val imgByte = getSongThumbnail("https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3")
+            Glide.with(this@MainActivity).asBitmap().load(imgByte).error(R.drawable.ic_album)
+                .into(binding.imgThumbnail)
         } else {
             binding.ivPlayPause.setImageResource(R.drawable.ic_play)
         }

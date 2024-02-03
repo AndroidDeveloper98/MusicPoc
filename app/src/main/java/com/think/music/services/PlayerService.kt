@@ -262,17 +262,17 @@ class PlayerService :
         try {
             mediaPlayer?.setDataSource(songPath)
             mediaPlayer?.setOnPreparedListener {
+                setMediaSessionAction()
+                setMediaSessionMetaData()
+                val currentPosition = getSavedCurrentPosition()
+                if (currentPosition != -1) {
+                    seekTo(currentPosition)
+                }
                 play()
             }
             mediaPlayer?.prepareAsync()
         } catch (e: IOException) {
             e.printStackTrace()
-        }
-        setMediaSessionAction()
-        setMediaSessionMetaData()
-        val currentPosition = getSavedCurrentPosition()
-        if (currentPosition != -1) {
-            seekTo(currentPosition)
         }
     }
 	
